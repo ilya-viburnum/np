@@ -1,0 +1,7 @@
+en:
+  active_admin:
+    buttons:
+      appoint_admin: "Appoint an admin"
+      suspend_admin: "Suspend admin"
+    notifications:
+      confirm_message: "Are you sure?"

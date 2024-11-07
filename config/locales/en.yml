@@ -1,5 +1,6 @@
 en:
   shared:
+    admin_panel: "Admin panel"
     to_posts: "To posts"
     signed_as: "Signed as %{email}"
     sign_in: "Sign in"
