@@ -1,12 +1,13 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  describe "validations" do
-    let(:user) { build(:user) }
+  let(:user) { build(:user, first_name: "Harry", middle_name: "James", last_name: "Potter") }
+  let(:admin_user) { create(:user, :admin) }
 
+  describe "validations" do
     it { expect(user).to be_valid }
 
-    it "is invalid without a first name" do
+    it "is invalid without a first and last names" do
       user.first_name = nil
       user.last_name = nil
 
@@ -15,7 +16,7 @@ RSpec.describe User, type: :model do
       expect(user.errors[:last_name]).to include("can't be blank")
     end
 
-    it "is invalid if the first name is too short" do
+    it "is invalid if the first and last names is too short" do
       user.first_name = ""
       user.last_name = ""
 
@@ -24,7 +25,7 @@ RSpec.describe User, type: :model do
       expect(user.errors[:last_name]).to include("is too short (minimum is 3 characters)")
     end
 
-    it "is invalid if the first name is too long" do
+    it "is invalid if the first and last names are too long" do
       user.first_name = "F" * 51
       user.last_name = "L" * 51
 
@@ -35,10 +36,11 @@ RSpec.describe User, type: :model do
   end
 
   describe "#full_name" do
-    let!(:user) { create(:user, first_name: "Harry", middle_name: "James", last_name: "Potter") }
+    it { expect(user.full_name).to eq("Harry James Potter") }
+  end
 
-    it "returns the full name correctly" do
-      expect(user.full_name).to eq("Harry James Potter")
-    end
+  describe "#is_admin?" do
+    it { expect(admin_user.is_admin?).to eq(true) }
+    it { expect(user.is_admin?).to eq(false) }
   end
 end
