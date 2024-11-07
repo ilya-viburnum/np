@@ -2,12 +2,14 @@ source "https://rubygems.org"
 
 gem "rails", "~> 7.2.2"
 
+gem "activeadmin"
 gem "bootsnap", require: false
 gem "devise"
 gem "importmap-rails"
 gem "jbuilder"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
+gem "sassc-rails"
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails"
