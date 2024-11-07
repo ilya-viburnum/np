@@ -1,4 +1,10 @@
 en:
+  shared:
+    to_posts: "To posts"
+    signed_as: "Signed as %{email}"
+    sign_in: "Sign in"
+    sign_out: "Sign out"
+    sign_up: "Sign up"
   home:
     welcome: "Welcome!"
     continue_actions: "Register or log in to continue"
