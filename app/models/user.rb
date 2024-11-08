@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   belongs_to :region, optional: true
 
+  has_many :posts, dependent: :destroy
   has_many :role_users, dependent: :destroy
   has_many :roles, through: :role_users
 

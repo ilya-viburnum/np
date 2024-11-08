@@ -1,0 +1,17 @@
+<div class="container mx-auto p-8">
+  <h1 class="text-3xl font-bold text-gray-800 mb-4"><%= t("dashboard.greeting", user_name: @user.full_name) %></h1>
+
+  <%= link_to t("shared.admin_panel"), admin_root_path, class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 mb-4 inline-block" if current_user.is_admin? %>
+  <%= link_to t("posts.new"), new_post_path, class: "bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mb-8 inline-block ml-2" %>
+
+  <h2 class="text-2xl font-semibold text-gray-700 mt-8 mb-4"><%= t("posts.title") %></h2>
+
+  <%= render "dashboards/posts/filters" %>
+
+  <% if @posts.empty? %>
+    <p class="text-gray-600 mb-4"><%= t("posts.no_posts") %></p>
+    <%= link_to t("posts.create_first"), new_post_path, class: "bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600" %>
+  <% else %>
+    <%= render "dashboards/posts/table" %>
+  <% end %>
+</div>

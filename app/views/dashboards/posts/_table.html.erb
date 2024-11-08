@@ -1,0 +1,30 @@
+<div class="overflow-x-auto">
+  <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <thead>
+    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+      <th class="py-3 px-6 text-left"><%= t("posts.table_headers.title") %></th>
+      <th class="py-3 px-6 text-left"><%= t("posts.table_headers.status") %></th>
+      <th class="py-3 px-6 text-center"><%= t("posts.table_headers.actions") %></th>
+    </tr>
+    </thead>
+    <tbody class="text-gray-700 text-sm font-light">
+    <% @posts.each do |post| %>
+      <tr class="border-b border-gray-200 hover:bg-gray-100">
+        <td class="py-3 px-6 text-left whitespace-nowrap">
+          <span class="font-medium"><%= post.title %></span>
+        </td>
+        <td class="py-3 px-6 text-left">
+          <span class="bg-gray-100 text-gray-600 py-1 px-3 rounded-full text-xs font-semibold"><%= post.status.humanize %></span>
+        </td>
+        <td class="py-3 px-6 text-center">
+          <div class="flex item-center justify-center space-x-2">
+            <%= link_to t("shared.show"), post_path(post), class: "bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-3 rounded text-xs" %>
+            <%= link_to t("shared.edit"), edit_post_path(post), class: "bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded text-xs" %>
+            <%= link_to t("shared.delete"), post_path(post), method: :delete, data: { confirm: t("shared.confirm_action") }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

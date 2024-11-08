@@ -1,0 +1,46 @@
+<div class="mb-6">
+  <h3 class="text-gray-700 font-bold"><%= t("posts.filters.title") %></h3>
+  <%= search_form_for @search, url: posts_path, method: :get, class: "mb-6" do |f| %>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div>
+        <%= f.label :region_name_cont, t("posts.filters.region"), class: "text-gray-700 font-light" %>
+        <%= f.select :region_id_eq, options_from_collection_for_select(Region.all, :id, :name), { include_blank: "Any region" }, class: "bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded" %>
+      </div>
+
+      <div>
+        <%= f.label :published_at_gteq, t("posts.filters.published_from"), class: "text-gray-700 font-light" %>
+        <%= f.date_field :published_at_gteq, class: "bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded" %>
+      </div>
+
+      <div>
+        <%= f.label :published_at_lteq, t("posts.filters.published_to"), class: "text-gray-700 font-light" %>
+        <%= f.date_field :published_at_lteq, class: "bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded" %>
+      </div>
+
+      <div>
+        <%= f.label :user_first_name_cont, t("posts.filters.first_name"), class: "text-gray-700 font-light" %>
+        <%= f.text_field :user_first_name_cont, class: "bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded" %>
+      </div>
+
+      <div>
+        <%= f.label :user_last_name_cont, t("posts.filters.last_name"), class: "text-gray-700 font-light" %>
+        <%= f.text_field :user_last_name_cont, class: "bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded" %>
+      </div>
+
+      <div>
+        <%= f.label :user_middle_name_cont, t("posts.filters.middle_name"), class: "text-gray-700 font-light" %>
+        <%= f.text_field :user_middle_name_cont, class: "bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded" %>
+      </div>
+
+      <div>
+        <%= f.label :user_email_cont, t("posts.filters.email"), class: "text-gray-700 font-light" %>
+        <%= f.text_field :user_email_cont, class: "bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded" %>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <%= f.submit t("posts.filters.search"), name: nil %>
+      <%= link_to t("posts.filters.clear"), posts_path %>
+    </div>
+  <% end %>
+</div>

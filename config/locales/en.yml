@@ -1,11 +1,40 @@
 en:
+  dashboard:
+    greeting: "Hello, %{user_name}"
+  home:
+    welcome: "Welcome!"
+    continue_actions: "Register or log in to continue."
+  posts:
+    create_first: "Create a first!"
+    filters:
+      any: "Any"
+      clear: "Clear"
+      email: "E-mail"
+      first_name: "First name"
+      last_name: "Last name"
+      middle_name: "Middle name"
+      published_from: "Published from"
+      published_to: "Published to"
+      region: "Region"
+      search: "Search"
+      status: "Status"
+      title: "Filters"
+    new: "New post"
+    no_posts: "No approved posts here."
+    table_headers:
+      actions: "Actions"
+      status: "Status"
+      title: "Title"
+    title: "Posts"
   shared:
     admin_panel: "Admin panel"
-    to_posts: "To posts"
+    confirm_action: "Are you sure?"
+    delete: "Delete"
+    edit: "Edit"
+    show: "Show"
     signed_as: "Signed as %{email}"
     sign_in: "Sign in"
     sign_out: "Sign out"
     sign_up: "Sign up"
-  home:
-    welcome: "Welcome!"
-    continue_actions: "Register or log in to continue"
+    submit: "Submit"
+    to_posts: "To posts"

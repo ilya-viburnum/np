@@ -1,0 +1,51 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  <%= form.hidden_field :region_id, value: current_user.region_id unless current_user.is_admin?%>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+
+  <% if current_user.is_admin? %>
+    <div>
+      <%= form.label :region_id %>
+      <%= form.select :region_id, Region.pluck(:name, :id) %>
+    </div>
+
+    <div>
+      <%= form.label :status %>
+      <%= form.select :status, Post.statuses.to_a %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+
+  <div>
+    <%= form.label :files %>
+    <%= form.file_field :files, multiple: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

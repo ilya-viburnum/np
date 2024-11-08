@@ -1,0 +1,10 @@
+<header class="bg-white shadow-md">
+  <div class="container mx-auto px-5 py-4 flex justify-between items-center">
+    <a href="/" class="text-xl font-bold text-blue-600">Np</a>
+    <nav class="space-x-4">
+      <%= link_to "Home", root_path, class: "text-gray-700 hover:text-blue-600" %>
+      <%= link_to "Posts", posts_path, class: "text-gray-700 hover:text-blue-600" %>
+      <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-700 hover:text-blue-600" %>
+    </nav>
+  </div>
+</header>

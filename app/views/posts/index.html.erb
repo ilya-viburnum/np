@@ -1,0 +1,13 @@
+<h1 class="text-2xl font-bold mb-4"><%= t("posts.title") %></h1>
+
+<%= render "filters" %>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <% if @posts.empty? %>
+    <p class="text-gray-600 mb-4"><%= t("posts.no_posts") %></p>
+  <% else %>
+    <% @posts.each do |post| %>
+      <%= render "card", post: post %>
+    <% end %>
+  <% end %>
+</div>
