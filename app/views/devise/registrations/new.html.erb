@@ -37,6 +37,11 @@
     <%= f.text_field :last_name %>
   </div>
 
+  <div class="field">
+    <%= f.label :region_id %><br />
+    <%= f.select :region_id, Region.pluck(:name, :id) %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

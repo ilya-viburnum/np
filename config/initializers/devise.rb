@@ -312,4 +312,4 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 end
 
-Devise::ParameterSanitizer::DEFAULT_PERMITTED_ATTRIBUTES[:sign_up].push(:first_name, :last_name, :middle_name)
+Devise::ParameterSanitizer::DEFAULT_PERMITTED_ATTRIBUTES[:sign_up].push(:first_name, :last_name, :middle_name, :region_id)

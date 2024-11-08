@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  let(:user) { build(:user, first_name: "Harry", middle_name: "James", last_name: "Potter") }
+  let(:user) { build(:user, first_name: "Harry", middle_name: "James", last_name: "Potter", region: create(:region)) }
   let(:admin_user) { create(:user, :admin) }
 
   describe "validations" do

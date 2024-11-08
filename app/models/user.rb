@@ -2,10 +2,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  belongs_to :region, optional: true
+
   has_many :role_users, dependent: :destroy
   has_many :roles, through: :role_users
 
   validates :first_name, :last_name, presence: true, length: { minimum: 3, maximum: 50 }
+  validates :region_id, presence: true, unless: :is_admin?
 
   def full_name
     "#{first_name} #{middle_name} #{last_name}"
