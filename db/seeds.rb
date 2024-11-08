@@ -13,3 +13,8 @@ User.create_with(password: 123456,
                  middle_name: Faker::Name.middle_name,
                  last_name: Faker::Name.last_name)
     .find_or_create_by(email: "user@example.com")
+
+CountryRegions::RussianFederation.sorted_regions.each do |region|
+  region = Region.find_or_create_by(name: region.name)
+  puts "#{region.name} has been created successfully!"
+end

@@ -4,6 +4,7 @@ gem "rails", "~> 7.2.2"
 
 gem "activeadmin"
 gem "bootsnap", require: false
+gem "carmen"
 gem "devise"
 gem "importmap-rails"
 gem "jbuilder"
