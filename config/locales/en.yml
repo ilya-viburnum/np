@@ -1,11 +1,11 @@
 en:
-  dashboard:
-    greeting: "Hello, %{user_name}"
   home:
     welcome: "Welcome!"
     continue_actions: "Register or log in to continue."
   posts:
+    approve: "Approve"
     create_first: "Create a first!"
+    edit: "Edit"
     filters:
       any: "Any"
       clear: "Clear"
@@ -20,12 +20,15 @@ en:
       status: "Status"
       title: "Filters"
     new: "New post"
-    no_posts: "No approved posts here."
+    no_posts: "No posts here."
+    reject: "Reject"
+    submit_review: "Submit review"
     table_headers:
       actions: "Actions"
       status: "Status"
       title: "Title"
     title: "Posts"
+    on_review: "Posts on review"
   shared:
     admin_panel: "Admin panel"
     confirm_action: "Are you sure?"

@@ -1,9 +1,13 @@
 <header class="bg-white shadow-md">
   <div class="container mx-auto px-5 py-4 flex justify-between items-center">
-    <a href="/" class="text-xl font-bold text-blue-600">Np</a>
+    <a href="/" class="text-xl font-bold">National Priorities</a>
     <nav class="space-x-4">
       <%= link_to "Home", root_path, class: "text-gray-700 hover:text-blue-600" %>
-      <%= link_to "Posts", posts_path, class: "text-gray-700 hover:text-blue-600" %>
+      <%= link_to "Feeds", feeds_path, class: "text-gray-700 hover:text-blue-600" %>
+      <% if current_user.is_admin? %>
+        <%= link_to "Posts on review", posts_on_review_path, class: "text-gray-700 hover:text-blue-600" %>
+        <%= link_to t("shared.admin_panel"), admin_root_path, class: "text-gray-700 hover:text-blue-600" %>
+      <% end %>
       <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-700 hover:text-blue-600" %>
     </nav>
   </div>

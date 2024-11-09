@@ -1,13 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
-
-  def index
-    @search = Post.ransack(params[:q])
-    @posts = @search.result(distinct: true).approved
-  end
-
-  def show
-  end
+  before_action :set_post, only: %i[show edit update destroy submit_review approve reject]
 
   def new
     @post = Post.new
@@ -17,17 +9,15 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to @post, notice: "Post was successfully created."
+      redirect_to dashboard_path, notice: "Post was successfully created."
     else
       render :new
     end
   end
 
-  def edit; end
-
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: "Post was successfully updated."
+      redirect_to dashboard_path, notice: "Post was successfully updated."
     else
       render :edit
     end
@@ -35,7 +25,22 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: "Post was successfully deleted."
+    redirect_to dashboard_path, notice: "Post was successfully deleted."
+  end
+
+  def submit_review
+    @post.submit_review!
+    redirect_to dashboard_path, notice: "Review successfully submitted!"
+  end
+
+  def approve
+    @post.approve!
+    redirect_to dashboard_path, notice: "Post has been approved!"
+  end
+
+  def reject
+    @post.reject!
+    redirect_to dashboard_path, notice: "Post has been rejected!"
   end
 
   private

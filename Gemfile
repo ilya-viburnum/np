@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "rails", "~> 7.2.2"
 
+gem "aasm"
 gem "activeadmin"
 gem "bootsnap", require: false
 gem "carmen"

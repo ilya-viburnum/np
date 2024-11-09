@@ -3,8 +3,18 @@ Rails.application.routes.draw do
   devise_for :users
   root "pages#home"
 
-  resources :posts
   resource :dashboard, only: :show
+
+  resources :feeds, only: :index
+
+  resources :posts, except: :index do
+    patch "submit_review", on: :member
+    patch "approve", on: :member
+    patch "reject", on: :member
+  end
+
+  get "posts_on_review" => "pages#posts_on_review"
+
 
   # Default routes
   get "up" => "rails/health#show", as: :rails_health_check

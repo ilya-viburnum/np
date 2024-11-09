@@ -1,6 +1,6 @@
 <div class="mb-6">
   <h3 class="text-gray-700 font-bold"><%= t("posts.filters.title") %></h3>
-  <%= search_form_for @search, url: posts_path, method: :get, class: "mb-6" do |f| %>
+  <%= search_form_for @search, url: feeds_path, method: :get, class: "mb-6" do |f| %>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <div>
         <%= f.label :region_name_cont, t("posts.filters.region"), class: "text-gray-700 font-light" %>
@@ -39,8 +39,8 @@
     </div>
 
     <div class="mt-4">
-      <%= f.submit t("posts.filters.search"), name: nil %>
-      <%= link_to t("posts.filters.clear"), posts_path %>
+      <%= f.submit t("shared.submit"), name: nil %>
+      <%= link_to t("posts.filters.clear"), feeds_path %>
     </div>
   <% end %>
 </div>

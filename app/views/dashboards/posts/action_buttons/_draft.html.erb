@@ -1,0 +1,4 @@
+<%= link_to t("shared.show"), post_path(post), class: "bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-3 rounded text-xs" %>
+<%= link_to t("posts.submit_review"), submit_review_post_path(post), data: { "turbo-method": :patch }, class: "bg-yellow-400 hover:bg-yellow-300 text-white font-bold py-1 px-3 rounded text-xs" unless current_user.is_admin? %>
+<%= link_to t("posts.approve"), approve_post_path(post), data: { "turbo-method": :patch }, class: "bg-yellow-400 hover:bg-yellow-300 text-white font-bold py-1 px-3 rounded text-xs" if current_user.is_admin? %>
+<%= link_to t("shared.delete"), post_path(post), method: :delete, data: { confirm: t("shared.confirm_action"), "turbo-method": :delete }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs" %>

@@ -1,27 +1,47 @@
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<div class="bg-white shadow-md rounded-lg p-6 mb-6">
+  <div class="flex items-center justify-between mt-8 mb-6">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">
+      <%= @post.title %>
+    </h1>
+    <%= link_to t("posts.edit"), edit_post_path(@post), class: "bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200 ease-in-out" if @post.draft? %>
+  </div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+  <div class="flex items-center text-sm text-gray-600 space-x-4 mb-6">
+    <span><%= @post.user.full_name %></span>
+    <span>|</span>
+    <span><%= @post.region.name %></span>
+  </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @post.status %>
-</p>
+  <p class="text-gray-700 text-lg leading-relaxed mb-6">
+    <%= @post.body %>
+  </p>
 
-<h3>Images:</h3>
-<% @post.images.each do |image| %>
-  <%= image_tag(image) %>
-<% end %>
+  <% if @post.images.attached? %>
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Images:</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      <% @post.images.each do |image| %>
+        <div class="w-full overflow-hidden rounded-lg shadow-md">
+          <%= link_to rails_blob_path(image, disposition: "inline"), target: "_blank" do %>
+            <%= image_tag(image, class: "object-cover w-full h-48") %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 
-<h3>Files:</h3>
-<% @post.files.each do |file| %>
-  <%= link_to file.filename, rails_blob_path(file, disposition: "attachment") %>
-<% end %>
+  <% if @post.files.attached? %>
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Files:</h3>
+    <ul class="list-disc list-inside text-blue-500">
+      <% @post.files.each do |file| %>
+        <li>
+          <%= link_to file.filename, rails_blob_path(file, disposition: "attachment"), class: "hover:underline" %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if current_user.is_admin? %>
+    <%= link_to t("posts.approve"), approve_post_path(@post), data: { "turbo-method": :patch }, class: "bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition duration-200 cursor-pointer" %>
+    <%= link_to t("posts.reject"), reject_post_path(@post), data: { "turbo-method": :patch }, class: "bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition duration-200 cursor-pointer" %>
+  <% end %>
+</div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>

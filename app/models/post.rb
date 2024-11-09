@@ -1,18 +1,42 @@
 class Post < ApplicationRecord
-  belongs_to :user
-  belongs_to :region
+  include AASM
 
-  STATUSES = [
+  ALL_STATUSES = [
     DRAFT = "draft",
     ON_REVIEW = "on_review",
     APPROVED = "approved",
-    REJECTED = "rejected",
+    REJECTED = "rejected"
   ]
+
+  ADMIN_CREATE_STATUSES = [
+    DRAFT = "draft",
+    APPROVED = "approved"
+  ]
+
+  belongs_to :user
+  belongs_to :region
 
   has_many_attached :images
   has_many_attached :files
 
-  enum status: { draft: DRAFT, on_review: ON_REVIEW, approved: APPROVED, rejected: REJECTED }
+  aasm column: "status" do
+    state :draft, initial: true
+    state :on_review
+    state :rejected
+    state :approved
+
+    event :submit_review do
+      transitions from: :draft, to: :on_review
+    end
+
+    event :approve do
+      transitions from: [:on_review, :draft], to: :approved
+    end
+
+    event :reject do
+      transitions from: :on_review, to: :rejected
+    end
+  end
 
   validates :title, presence: true
   validates :body, presence: true

@@ -1,0 +1,41 @@
+<div class="bg-white shadow-md rounded-lg p-6 mb-6">
+  <h1 class="text-3xl font-bold text-gray-800 mb-4">
+    <%= post.title %>
+  </h1>
+
+  <div class="flex items-center text-sm text-gray-600 space-x-4 mb-6">
+    <span><%= post.user.full_name %></span>
+    <span>|</span>
+    <span><%= post.region.name %></span>
+    <span>|</span>
+    <span><%= post.published_at&.strftime('%B %d, %Y') %></span>
+  </div>
+
+  <p class="text-gray-700 text-lg leading-relaxed mb-6">
+    <%= post.body %>
+  </p>
+
+  <% if post.images.attached? %>
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Images:</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+      <% post.images.each do |image| %>
+        <div class="w-full overflow-hidden rounded-lg shadow-md">
+          <%= link_to rails_blob_path(image, disposition: "inline"), target: "_blank" do %>
+            <%= image_tag(image, class: "object-cover w-full h-48") %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if post.files.attached? %>
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Files:</h3>
+    <ul class="list-disc list-inside text-blue-500">
+      <% post.files.each do |file| %>
+        <li>
+          <%= link_to file.filename, rails_blob_path(file, disposition: "attachment"), class: "hover:underline" %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
