@@ -29,17 +29,17 @@ class PostsController < ApplicationController
   end
 
   def submit_review
-    @post.submit_review!
+    PostActions::SubmitReviewJob.perform_later(@post)
     redirect_to dashboard_path, notice: "Review successfully submitted!"
   end
 
   def approve
-    @post.approve!
+    PostActions::ApproveJob.perform_later(@post)
     redirect_to dashboard_path, notice: "Post has been approved!"
   end
 
   def reject
-    @post.reject!
+    PostActions::RejectJob.perform_later(@post)
     redirect_to dashboard_path, notice: "Post has been rejected!"
   end
 
