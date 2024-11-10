@@ -19,6 +19,8 @@ class Post < ApplicationRecord
   has_many_attached :images
   has_many_attached :files
 
+  after_save :set_published_at, if: ->(record) { record.approved? && record.published_at.nil? }
+
   aasm column: "status" do
     state :draft, initial: true
     state :on_review
@@ -30,6 +32,9 @@ class Post < ApplicationRecord
     end
 
     event :approve do
+      after do
+        set_published_at
+      end
       transitions from: [:on_review, :draft], to: :approved
     end
 
@@ -52,5 +57,11 @@ class Post < ApplicationRecord
 
   def self.ransackable_associations(auth_object = nil)
     %w[region user]
+  end
+
+  private
+
+  def set_published_at
+    update(published_at: DateTime.now)
   end
 end
