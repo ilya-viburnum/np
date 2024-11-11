@@ -32,13 +32,13 @@ ActiveAdmin.register User do
 
   controller do
     def appoint_admin
-      RoleUser.create(user: resource, role: Role.find_by(name: 'admin'))
+      RoleUser.create(user: resource, role: Role.find_by(name: "admin"))
       flash[:notice] = "Appointed as admin"
       redirect_to admin_users_path
     end
 
     def suspend_admin
-      resource.role_users.joins(:role).find_by(role: {name: 'admin'}).destroy
+      resource.role_users.joins(:role).find_by(role: { name: "admin" }).destroy
       flash[:notice] = "Suspended as admin"
       redirect_to admin_users_path
     end

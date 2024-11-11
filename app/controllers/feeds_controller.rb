@@ -16,5 +16,4 @@ class FeedsController < ApplicationController
   def export_params
     params.require(:q).permit(:region_id_eq, :published_at_gteq, :published_at_lteq, :user_email_cont, :user_first_name_cont, :user_last_name_cont, :user_middle_name_cont)
   end
-
 end

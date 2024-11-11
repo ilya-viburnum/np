@@ -35,7 +35,7 @@ class Post < ApplicationRecord
       after do
         set_published_at
       end
-      transitions from: [:on_review, :draft], to: :approved
+      transitions from: [ :on_review, :draft ], to: :approved
     end
 
     event :reject do

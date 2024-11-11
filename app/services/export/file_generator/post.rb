@@ -29,7 +29,7 @@ module Export
       private
 
       def headers
-        ["Author", "Region", "Title", "Body", "Images", "Files", "Published At"]
+        [ "Author", "Region", "Title", "Body", "Images", "Files", "Published At" ]
       end
 
       def post_row(post)
