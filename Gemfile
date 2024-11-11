@@ -6,6 +6,7 @@ gem "aasm"
 gem "activeadmin"
 gem "bootsnap", require: false
 gem "carmen"
+gem "caxlsx"
 gem "devise"
 gem "importmap-rails"
 gem "jbuilder"

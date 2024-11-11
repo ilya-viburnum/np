@@ -5,6 +5,7 @@
     <p class="text-gray-600 mb-4"><%= t("posts.no_posts") %></p>
   <% else %>
     <%= render "filters" %>
+    <%= link_to "Report generation", export_feeds_path(q: params[:q].try(:permit!)) %>
 
     <% @posts.each do |post| %>
       <%= render "card", post: post %>

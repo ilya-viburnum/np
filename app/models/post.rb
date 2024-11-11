@@ -59,6 +59,18 @@ class Post < ApplicationRecord
     %w[region user]
   end
 
+  def image_urls
+    images.map do |image|
+      Rails.application.routes.url_helpers.url_for(image)
+    end
+  end
+
+  def files_urls
+    files.map do |image|
+      Rails.application.routes.url_helpers.url_for(image)
+    end
+  end
+
   private
 
   def set_published_at

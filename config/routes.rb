@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resource :dashboard, only: :show
 
-  resources :feeds, only: :index
+  resources :feeds, only: :index do
+    get :export, on: :collection
+  end
 
   resources :posts, except: :index do
     patch "submit_review", on: :member
